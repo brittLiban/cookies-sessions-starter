@@ -3,10 +3,10 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ...
-      MYSQL_DATABASE: ...
-      MYSQL_USER: ...
-      MYSQL_PASSWORD: ...
+      MYSQL_ROOT_PASSWORD: Black202
+      MYSQL_DATABASE: ssessions
+      MYSQL_USER: Liban
+      MYSQL_PASSWORD: Black202
     volumes:
       - ./mysql_data:/var/lib/mysql
     ports:
@@ -19,6 +19,6 @@ services:
       - db
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: ...
+      MYSQL_ROOT_PASSWORD: Black202
     ports:
       - "8080:80"
