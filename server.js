@@ -1,6 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import session from 'express-session'
+import mysqlSession from 'express-mysql-session'
 
 const app = express();
 
@@ -10,6 +11,16 @@ app.use(express.static('./public'))
 app.set("view engine", "pug");
 app.set("views", "./views");
 
+const options = {
+    host: "localhost",
+    port: 3306,
+    user: "lbritt",
+    database: "session"
+}
+const MySQLStore = mysqlSession(session);
+const sessionStore = new MySQLStore(options);
+
+//configure session
 app.use(session({
     //password-ish
     secret: "Blue123445",
@@ -17,12 +28,15 @@ app.use(session({
     saveUninitialized: true,
     // false - session data is only saved on request when something actually changes, true - saves session back to session store on every request
     resave: false,
+    store: sessionStore,
     cookie: {
         httpOnly: true, 
         maxAge: 30 * 60 * 1000
     }
 }))
 
+await sessionStore.onReady();
+console.log('Session Store is ready!')
 //routes
 
 app.get('/login', (req, res) =>{

@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: Black202
       MYSQL_DATABASE: ssessions
       MYSQL_USER: Liban
-      MYSQL_PASSWORD: Black202
+      MYSQL_PASSWORD: Black202!
     volumes:
       - ./mysql_data:/var/lib/mysql
     ports:
